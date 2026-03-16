@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zero to AI/ML Engineer — 3-Month Interview Prep Course</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+/* ── RESET & BASE ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --black:   #0C0C0C;
+  --ink:     #1A1A2E;
+  --body:    #3D3D4E;
+  --muted:   #8888A0;
+  --rule:    #E8E8EF;
+  --bg:      #FFFFFF;
+  --bg2:     #F9F9FC;
+  --accent:  #4F46E5;
+  --accent2: #059669;
+  --amber:   #D97706;
+  --red:     #DC2626;
+  --tag-bg:  #F0EFFF;
+  --tag-clr: #4F46E5;
+  --serif:   'DM Serif Display', Georgia, serif;
+  --sans:    'DM Sans', sans-serif;
+  --mono:    'DM Mono', monospace;
+  --max:     1120px;
+  --radius:  10px;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--sans);
+  font-size: 16px;
+  color: var(--body);
+  background: var(--bg);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── UTILS ───────────────────────────────────────────────────── */
+.container { max-width: var(--max); margin: 0 auto; padding: 0 32px; }
+.rule { border: none; border-top: 1px solid var(--rule); margin: 0; }
+.tag {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: var(--mono); font-size: 11px; font-weight: 500;
+  color: var(--tag-clr); background: var(--tag-bg);
+  padding: 4px 12px; border-radius: 100px; letter-spacing: 0.04em;
+}
+.tag.green  { background: #ECFDF5; color: #059669; }
+.tag.amber  { background: #FFFBEB; color: #D97706; }
+.tag.red    { background: #FEF2F2; color: #DC2626; }
+.tag.purple { background: #F5F3FF; color: #7C3AED; }
+
+/* ── NAV ─────────────────────────────────────────────────────── */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--rule);
+}
+.nav-inner {
+  max-width: var(--max); margin: 0 auto; padding: 0 32px;
+  height: 60px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.nav-logo {
+  font-family: var(--mono); font-size: 13px; font-weight: 500;
+  color: var(--accent); letter-spacing: 0.02em; text-decoration: none;
+}
+.nav-links {
+  display: flex; gap: 32px; list-style: none;
+}
+.nav-links a {
+  font-size: 13.5px; font-weight: 500; color: var(--body);
+  text-decoration: none; letter-spacing: 0.01em;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--accent); }
+.nav-cta {
+  font-size: 13px; font-weight: 600;
+  color: #fff; background: var(--accent);
+  padding: 9px 22px; border-radius: 6px;
+  text-decoration: none; letter-spacing: 0.01em;
+  transition: opacity 0.2s;
+}
+.nav-cta:hover { opacity: 0.85; }
+
+/* ── HERO ─────────────────────────────────────────────────────── */
+.hero {
+  padding: 100px 0 80px;
+  border-bottom: 1px solid var(--rule);
+}
+.hero-eyebrow {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 28px;
+}
+.hero-eyebrow span {
+  font-family: var(--mono); font-size: 12px; font-weight: 500;
+  color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase;
+}
+.hero h1 {
+  font-family: var(--serif);
+  font-size: clamp(40px, 6vw, 72px);
+  font-weight: 400;
+  color: var(--black);
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+  max-width: 760px;
+  margin-bottom: 24px;
+}
+.hero h1 em {
+  font-style: italic;
+  color: var(--accent);
+}
+.hero-sub {
+  font-size: 18px; font-weight: 300; color: var(--body);
+  max-width: 560px; line-height: 1.7; margin-bottom: 40px;
+}
+.hero-actions { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; margin-bottom: 64px; }
+.btn-primary {
+  font-size: 14px; font-weight: 600;
+  color: #fff; background: var(--accent);
+  padding: 14px 30px; border-radius: 8px;
+  text-decoration: none; letter-spacing: 0.01em;
+  transition: transform 0.15s, box-shadow 0.15s;
+  box-shadow: 0 2px 16px rgba(79,70,229,0.25);
+}
+.btn-primary:hover { transform: translateY(-1px); box-shadow: 0 4px 24px rgba(79,70,229,0.35); }
+.btn-ghost {
+  font-size: 14px; font-weight: 500; color: var(--body);
+  text-decoration: none; display: flex; align-items: center; gap: 6px;
+}
+.btn-ghost:hover { color: var(--accent); }
+
+.hero-stats {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 0; border: 1px solid var(--rule); border-radius: var(--radius);
+  overflow: hidden;
+}
+.stat-item {
+  padding: 24px 28px;
+  border-right: 1px solid var(--rule);
+}
+.stat-item:last-child { border-right: none; }
+.stat-num {
+  font-family: var(--serif); font-size: 36px; color: var(--black);
+  line-height: 1; margin-bottom: 4px;
+}
+.stat-label {
+  font-size: 12px; font-weight: 500; color: var(--muted);
+  text-transform: uppercase; letter-spacing: 0.06em;
+}
+
+/* ── FOR WHOM ─────────────────────────────────────────────────── */
+.for-whom {
+  padding: 80px 0;
+  border-bottom: 1px solid var(--rule);
+}
+.section-label {
+  font-family: var(--mono); font-size: 11px; font-weight: 500;
+  color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.section-title {
+  font-family: var(--serif); font-size: clamp(28px, 4vw, 42px);
+  font-weight: 400; color: var(--black); line-height: 1.15;
+  letter-spacing: -0.01em; margin-bottom: 16px;
+}
+.section-sub {
+  font-size: 16px; font-weight: 300; color: var(--body); max-width: 560px; line-height: 1.7;
+}
+.cards-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 48px; }
+.card {
+  background: var(--bg);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  padding: 28px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.card:hover { border-color: var(--accent); box-shadow: 0 4px 24px rgba(79,70,229,0.08); }
+.card-icon { font-size: 28px; margin-bottom: 14px; }
+.card-title { font-size: 15px; font-weight: 600; color: var(--black); margin-bottom: 8px; }
+.card-text { font-size: 14px; font-weight: 300; color: var(--body); line-height: 1.65; }
+
+/* ── SCHEDULE ─────────────────────────────────────────────────── */
+.schedule-section {
+  padding: 80px 0;
+  border-bottom: 1px solid var(--rule);
+  background: var(--bg2);
+}
+.schedule-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 48px; }
+.sched-card {
+  background: white;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  padding: 28px 32px;
+}
+.sched-day {
+  font-family: var(--mono); font-size: 11px; font-weight: 500;
+  color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.sched-title { font-size: 17px; font-weight: 600; color: var(--black); margin-bottom: 16px; }
+.sched-items { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.sched-items li {
+  font-size: 14px; font-weight: 300; color: var(--body);
+  display: flex; gap: 10px; align-items: flex-start;
+}
+.sched-items li::before {
+  content: '—'; color: var(--accent); font-weight: 600; flex-shrink: 0;
+}
+.availability-note {
+  margin-top: 32px;
+  background: #F0EFFF;
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  font-size: 14px; color: var(--accent); font-weight: 500;
+  display: flex; align-items: center; gap: 10px;
+}
+
+/* ── ROADMAP ─────────────────────────────────────────────────── */
+.roadmap { padding: 80px 0; border-bottom: 1px solid var(--rule); }
+.phase-tabs { display: flex; gap: 0; margin-top: 48px; margin-bottom: 0; border: 1px solid var(--rule); border-radius: var(--radius); overflow: hidden; }
+.phase-tab {
+  flex: 1; padding: 16px 20px;
+  border-right: 1px solid var(--rule);
+  cursor: pointer; transition: background 0.2s;
+  text-align: center;
+}
+.phase-tab:last-child { border-right: none; }
+.phase-tab.active { background: var(--accent); }
+.phase-tab .pt-num {
+  font-family: var(--mono); font-size: 11px; color: var(--muted);
+  letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 4px;
+}
+.phase-tab.active .pt-num { color: rgba(255,255,255,0.7); }
+.phase-tab .pt-name {
+  font-size: 14px; font-weight: 600; color: var(--black);
+}
+.phase-tab.active .pt-name { color: white; }
+.phase-content { display: none; }
+.phase-content.active { display: block; }
+
+/* ── WEEKS GRID ───────────────────────────────────────────────── */
+.weeks-list { margin-top: 0; border: 1px solid var(--rule); border-top: none; border-radius: 0 0 var(--radius) var(--radius); overflow: hidden; }
+.week-row {
+  display: grid; grid-template-columns: 70px 1fr auto;
+  align-items: start;
+  gap: 0;
+  border-bottom: 1px solid var(--rule);
+  transition: background 0.15s;
+}
+.week-row:last-child { border-bottom: none; }
+.week-row:hover { background: var(--bg2); }
+.week-num {
+  padding: 20px 20px;
+  font-family: var(--mono); font-size: 12px; font-weight: 500;
+  color: var(--muted); letter-spacing: 0.04em;
+  border-right: 1px solid var(--rule);
+  display: flex; align-items: flex-start; padding-top: 22px;
+}
+.week-content { padding: 20px 24px; }
+.week-title {
+  font-size: 15px; font-weight: 600; color: var(--black); margin-bottom: 5px;
+}
+.week-desc {
+  font-size: 13px; font-weight: 300; color: var(--body); line-height: 1.6;
+}
+.week-topics {
+  display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px;
+}
+.topic-chip {
+  font-family: var(--mono); font-size: 10.5px; font-weight: 400;
+  color: var(--muted); background: var(--bg2);
+  border: 1px solid var(--rule);
+  padding: 3px 9px; border-radius: 100px;
+}
+.week-badge { padding: 20px 20px; display: flex; align-items: flex-start; padding-top: 22px; }
+.wb {
+  font-family: var(--mono); font-size: 10px; font-weight: 500;
+  padding: 3px 10px; border-radius: 100px;
+  white-space: nowrap;
+}
+.wb-test  { background: #FEF2F2; color: #DC2626; }
+.wb-proj  { background: #ECFDF5; color: #059669; }
+.wb-inter { background: #FFF7ED; color: #EA580C; }
+
+/* ── DELIVERABLES ─────────────────────────────────────────────── */
+.deliverables { padding: 80px 0; border-bottom: 1px solid var(--rule); background: var(--bg2); }
+.deliv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; margin-top: 48px; border: 1px solid var(--rule); border-radius: var(--radius); overflow: hidden; }
+.deliv-item {
+  padding: 32px 36px;
+  border-right: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+.deliv-item:nth-child(2n) { border-right: none; }
+.deliv-item:nth-last-child(-n+2) { border-bottom: none; }
+.deliv-num {
+  font-family: var(--serif); font-size: 48px; color: var(--rule);
+  line-height: 1; margin-bottom: 12px;
+}
+.deliv-title { font-size: 16px; font-weight: 600; color: var(--black); margin-bottom: 8px; }
+.deliv-text { font-size: 14px; font-weight: 300; color: var(--body); line-height: 1.65; }
+.deliv-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+
+/* ── TECH STACK ───────────────────────────────────────────────── */
+.stack-section { padding: 80px 0; border-bottom: 1px solid var(--rule); }
+.stack-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 48px; }
+.stack-card {
+  border: 1px solid var(--rule); border-radius: var(--radius);
+  padding: 22px 20px;
+  transition: border-color 0.2s, transform 0.15s;
+}
+.stack-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+.stack-icon { font-size: 24px; margin-bottom: 10px; }
+.stack-name { font-size: 14px; font-weight: 600; color: var(--black); margin-bottom: 4px; }
+.stack-use  { font-size: 12px; font-weight: 300; color: var(--muted); }
+.stack-phase {
+  margin-top: 10px;
+  font-family: var(--mono); font-size: 10px;
+  color: var(--accent); letter-spacing: 0.04em;
+}
+
+/* ── OUTCOME TIMELINE ─────────────────────────────────────────── */
+.outcome { padding: 80px 0; border-bottom: 1px solid var(--rule); }
+.timeline { margin-top: 48px; display: flex; flex-direction: column; gap: 0; }
+.tl-item {
+  display: grid; grid-template-columns: 100px 24px 1fr;
+  gap: 0 20px; align-items: start;
+}
+.tl-month {
+  font-family: var(--mono); font-size: 12px; font-weight: 500;
+  color: var(--muted); letter-spacing: 0.04em; text-align: right;
+  padding-top: 3px;
+}
+.tl-line-wrap { display: flex; flex-direction: column; align-items: center; }
+.tl-dot {
+  width: 12px; height: 12px;
+  border-radius: 50%; background: var(--accent); border: 2px solid #fff;
+  box-shadow: 0 0 0 2px var(--accent); flex-shrink: 0; margin-top: 4px;
+}
+.tl-connector { flex: 1; width: 2px; background: var(--rule); min-height: 60px; }
+.tl-item:last-child .tl-connector { display: none; }
+.tl-content { padding-bottom: 40px; }
+.tl-title { font-size: 17px; font-weight: 600; color: var(--black); margin-bottom: 6px; }
+.tl-text { font-size: 14px; font-weight: 300; color: var(--body); line-height: 1.65; max-width: 600px; }
+.tl-pills { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.tl-pill {
+  font-size: 12px; font-weight: 500; padding: 3px 12px;
+  border-radius: 100px; border: 1px solid var(--rule);
+  color: var(--body);
+}
+
+/* ── FAQ ──────────────────────────────────────────────────────── */
+.faq { padding: 80px 0; border-bottom: 1px solid var(--rule); background: var(--bg2); }
+.faq-list { margin-top: 48px; display: flex; flex-direction: column; gap: 0; border: 1px solid var(--rule); border-radius: var(--radius); overflow: hidden; }
+.faq-item { border-bottom: 1px solid var(--rule); }
+.faq-item:last-child { border-bottom: none; }
+.faq-q {
+  width: 100%; padding: 22px 28px;
+  background: none; border: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  text-align: left; font-family: var(--sans);
+  font-size: 15px; font-weight: 600; color: var(--black);
+  transition: background 0.15s;
+}
+.faq-q:hover { background: white; }
+.faq-q .chevron {
+  font-size: 16px; color: var(--muted); transition: transform 0.25s; flex-shrink: 0;
+}
+.faq-q.open .chevron { transform: rotate(180deg); }
+.faq-a {
+  display: none; padding: 0 28px 22px;
+  font-size: 14px; font-weight: 300; color: var(--body); line-height: 1.7;
+  max-width: 700px;
+}
+.faq-a.open { display: block; }
+
+/* ── CTA FOOTER ───────────────────────────────────────────────── */
+.cta-footer {
+  padding: 100px 0;
+  text-align: center;
+}
+.cta-footer h2 {
+  font-family: var(--serif); font-size: clamp(32px, 5vw, 56px);
+  font-weight: 400; color: var(--black); line-height: 1.1;
+  letter-spacing: -0.01em; margin-bottom: 20px;
+}
+.cta-footer h2 em { font-style: italic; color: var(--accent); }
+.cta-footer p {
+  font-size: 17px; font-weight: 300; color: var(--body);
+  max-width: 480px; margin: 0 auto 40px; line-height: 1.7;
+}
+.cta-group { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+
+.footer-bar {
+  border-top: 1px solid var(--rule); padding: 24px 0;
+  background: var(--bg2);
+}
+.footer-inner {
+  max-width: var(--max); margin: 0 auto; padding: 0 32px;
+  display: flex; align-items: center; justify-content: space-between;
+  font-size: 13px; color: var(--muted);
+}
+.footer-inner strong { color: var(--body); }
+
+/* ── ANIMATIONS ───────────────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(20px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+.hero h1, .hero-sub, .hero-actions, .hero-stats {
+  animation: fadeUp 0.6s ease both;
+}
+.hero-sub        { animation-delay: 0.1s; }
+.hero-actions    { animation-delay: 0.2s; }
+.hero-stats      { animation-delay: 0.3s; }
+
+/* ── RESPONSIVE ───────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .hero-stats { grid-template-columns: repeat(2,1fr); }
+  .cards-3    { grid-template-columns: 1fr 1fr; }
+  .schedule-grid { grid-template-columns: 1fr; }
+  .stack-grid { grid-template-columns: repeat(2,1fr); }
+  .week-row   { grid-template-columns: 56px 1fr; }
+  .week-badge { display: none; }
+}
+@media (max-width: 650px) {
+  .container  { padding: 0 20px; }
+  .nav-links  { display: none; }
+  .hero       { padding: 60px 0 50px; }
+  .cards-3    { grid-template-columns: 1fr; }
+  .hero-stats { grid-template-columns: repeat(2,1fr); }
+  .deliv-grid { grid-template-columns: 1fr; }
+  .deliv-item { border-right: none !important; }
+  .deliv-item:nth-last-child(-n+2) { border-bottom: 1px solid var(--rule) !important; }
+  .deliv-item:last-child { border-bottom: none !important; }
+  .stack-grid { grid-template-columns: repeat(2,1fr); }
+  .tl-item    { grid-template-columns: 72px 20px 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── NAV ─────────────────────────────────────────────────────── -->
+<!-- <nav>
+  <div class="nav-inner"> -->
+    <!-- <a href="#" class="nav-logo">OGRADE AI/ML</a> -->
+    <!-- <ul class="nav-links">
+      <li><a href="#roadmap">Curriculum</a></li>
+      <li><a href="#schedule">Schedule</a></li>
+      <li><a href="#deliverables">Outcomes</a></li>
+      <li><a href="#stack">Tech Stack</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul> -->
+    <!-- <a href="#cta" class="nav-cta">Enroll Now</a> -->
+  <!-- </div>
+</nav> -->
+
+<!-- ── HERO ─────────────────────────────────────────────────────── -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-eyebrow">
+      <span class="tag">3-Month Program</span>
+      <span>Beginner Friendly · All Backgrounds Welcome</span>
+    </div>
+
+    <h1>From <em>Zero</em> to<br>AI/ML Engineer,<br>Interview Ready.</h1>
+
+    <p class="hero-sub">
+      A structured 3-month program that takes anyone — whether you're a fresher, a developer, or a 20-year industry veteran switching fields — and makes you genuinely interview-ready for AI/ML engineering roles.
+    </p>
+
+    <div class="hero-actions">
+      <a href="#cta" class="btn-primary">Start the Program →</a>
+      <a href="#roadmap" class="btn-ghost">View Full Curriculum ↓</a>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num">12</div>
+        <div class="stat-label">Weeks of Content</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">84</div>
+        <div class="stat-label">Guided Sessions</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">3</div>
+        <div class="stat-label">Real AI Projects</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">1</div>
+        <div class="stat-label">Complete Resume + Portfolio</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOR WHOM ─────────────────────────────────────────────────── -->
+<section class="for-whom">
+  <div class="container">
+    <p class="section-label">Who Is This For</p>
+    <h2 class="section-title">Built for every background,<br>optimised for results.</h2>
+    <p class="section-sub">No prior AI knowledge needed. What you need is consistency and 2–3 hours per day.</p>
+
+    <div class="cards-3">
+      <div class="card">
+        <div class="card-icon">🎓</div>
+        <div class="card-title">Freshers & Students</div>
+        <div class="card-text">No experience? No problem. We start from Python Day 1 and build your entire skillset from scratch. You'll graduate with real projects interviewers actually respect.</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">💼</div>
+        <div class="card-title">Professionals Switching Careers</div>
+        <div class="card-text">Marketing, finance, operations, healthcare, engineering — your domain knowledge becomes your edge. We teach you to apply AI to problems you already understand deeply.</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">🛠️</div>
+        <div class="card-title">Developers Upskilling</div>
+        <div class="card-text">Already write code? We fast-track your Python and go deep on ML/AI concepts and system design. You'll be ready to discuss model deployment, not just model training.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SCHEDULE ─────────────────────────────────────────────────── -->
+<section class="schedule-section" id="schedule">
+  <div class="container">
+    <p class="section-label">Weekly Schedule</p>
+    <h2 class="section-title">Consistent. Structured.<br>Fits your life.</h2>
+    <p class="section-sub">The program works around your availability — not the other way around.</p>
+
+    <div class="schedule-grid">
+      <div class="sched-card">
+        <div class="sched-day">Weekdays</div>
+        <div class="sched-title">3 Live Sessions / Week</div>
+        <ul class="sched-items">
+          <li>Concept delivery — new topic introduced clearly with examples</li>
+          <li>Doubt resolution — every question answered, nothing left vague</li>
+          <li>Progress check — quick review of your notebook / exercises</li>
+          <li>~45–60 minutes per session, timing set by your availability</li>
+        </ul>
+      </div>
+
+      <div class="sched-card">
+        <div class="sched-day">Weekends</div>
+        <div class="sched-title">2-Hour Deep Work Session</div>
+        <ul class="sched-items">
+          <li>Hands-on project or notebook work — guided, not just "homework"</li>
+          <li>Weekly test on Day 7 — open notebook, real problems</li>
+          <li>Code review of your solutions with detailed feedback</li>
+          <li>Portfolio update — everything you build goes on your GitHub</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="availability-note">
+      ⏰&nbsp; All session timings are fixed <strong>based on your availability</strong> during enrollment. Morning, afternoon, or evening — we schedule around you.
+    </div>
+  </div>
+</section>
+
+<!-- ── ROADMAP ─────────────────────────────────────────────────── -->
+<section class="roadmap" id="roadmap">
+  <div class="container">
+    <p class="section-label">12-Week Curriculum</p>
+    <h2 class="section-title">Everything you need,<br>nothing you don't.</h2>
+    <p class="section-sub">Three focused phases. Each builds directly on the last.</p>
+
+    <div class="phase-tabs">
+      <div class="phase-tab active" onclick="switchPhase('p1', this)">
+        <div class="pt-num">Month 1 · Weeks 1–4</div>
+        <div class="pt-name">Python &amp; Data Foundations</div>
+      </div>
+      <div class="phase-tab" onclick="switchPhase('p2', this)">
+        <div class="pt-num">Month 2 · Weeks 5–8</div>
+        <div class="pt-name">Machine Learning Core</div>
+      </div>
+      <div class="phase-tab" onclick="switchPhase('p3', this)">
+        <div class="pt-num">Month 3 · Weeks 9–12</div>
+        <div class="pt-name">AI Projects &amp; Interview Prep</div>
+      </div>
+    </div>
+
+    <!-- PHASE 1 -->
+    <div class="weeks-list phase-content active" id="p1">
+      <div class="week-row">
+        <div class="week-num">W01</div>
+        <div class="week-content">
+          <div class="week-title">Python Fundamentals</div>
+          <div class="week-desc">Variables, data types, operators, strings, collections, control flow. Comes with a full .ipynb notebook and this reference PDF guide.</div>
+          <div class="week-topics">
+            <span class="topic-chip">int · float · str · bool</span>
+            <span class="topic-chip">Lists · Dicts · Sets</span>
+            <span class="topic-chip">if/for/while</span>
+            <span class="topic-chip">Day 7 Test</span>
+          </div>
+        </div>
+        <div class="week-badge"><span class="wb wb-test">Test</span></div>
+      </div>
+      <div class="week-row">
+        <div class="week-num">W02</div>
+        <div class="week-content">
+          <div class="week-title">Functions, Modules &amp; File Handling</div>
+          <div class="week-desc">Write reusable, clean code. Understand scope, closures, error handling, and how to work with files, JSON, and external libraries.</div>
+          <div class="week-topics">
+            <span class="topic-chip">def · return · *args</span>
+            <span class="topic-chip">try / except</span>
+            <span class="topic-chip">File I/O · JSON</span>
+            <span class="topic-chip">pip · modules</span>
+          </div>
+        </div>
+        <div class="week-badge"><span class="wb wb-test">Test</span></div>
+      </div>
+      <div class="week-row">
+        <div class="week-num">W03</div>
+        <div class="week-content">
+          <div class="week-title">OOP + Pythonic Code</div>
+          <div class="week-desc">Object-Oriented Programming, list comprehensions, lambda, decorators, and writing Python the way professionals actually write it.</div>
+          <div class="week-topics">
+            <span class="topic-chip">Classes · Inheritance</span>
+            <span class="topic-chip">Comprehensions</span>
+            <span class="topic-chip">Decorators</span>
+            <span class="topic-chip">Generators</span>
+          </div>
+        </div>
+        <div class="week-badge"><span class="wb wb-test">Test</span></div>
+      </div>
+      <div class="week-row">
+        <div class="week-num">W04</div>
+        <div class="week-content">
+          <div class="week-title">NumPy, Pandas &amp; Data Analysis</div>
+          <div class="week-desc">The two most important libraries in data science. Clean, explore, filter, and visualise real datasets. Mini-project: Analyse a public dataset end-to-end.</div>
+          <div class="week-topics">
+            <span class="topic-chip">NumPy arrays</span>
+            <span class="topic-chip">Pandas DataFrames</span>
+            <span class="topic-chip">Matplotlib · Seaborn</span>
+            <span class="topic-chip">Mini Project ①</span>
+          </div>
+        </div>
+        <div class="week-badge"><span class="wb wb-proj">Project</span></div>
+      </div>
+    </div>
+
+    <!-- PHASE 2 -->
+    <div class="weeks-list phase-content" id="p2">
+      <div class="week-row">
+        <div class="week-num">W05</div>
+        <div class="week-content">
+          <div class="week-title">ML Foundations — How Machines Learn</div>
+          <div class="week-desc">Understand what machine learning actually is — supervised, unsupervised, reinforcement. Train/test split, overfitting, underfitting, evaluation metrics.</div>
+          <div class="week-topics">
+            <span class="topic-chip">Supervised · Unsupervised</span>
+            <span class="topic-chip">Train/Test Split</span>
+            <span class="topic-chip">Accuracy · Precision · Recall</span>
+            <span class="topic-chip">Bias · Variance</span>
+          </div>
+        </div>
+        <div class="week-badge"><span class="wb wb-test">Test</span></div>
+      </div>
+      <div class="week-row">
+        <div class="week-num">W06</div>
+        <div class="week-content">
+          <div class="week-title">Core ML Algorithms — Regression &amp; Classification</div>
+          <div class="week-desc">Linear regression, logistic regression, decision trees, random forests, SVM, KNN. Understand each algorithm conceptually and implement with Scikit-learn.</div>
+          <div class="week-topics">
+            <span class="topic-chip">Linear Regression</span>
+            <span class="topic-chip">Logistic Regression</span>
+            <span class="topic-chip">Decision Trees · RF</span>
+            <span class="topic-chip">Scikit-learn</span>
+          </div>
+        </div>
+        <div class="week-badge"><span class="wb wb-test">Test</span></div>
+      </div>
+      <div class="week-row">
+        <div class="week-num">W07</div>
+        <div class="week-content">
+          <div class="week-title">Clustering, Dimensionality Reduction &amp; Feature Engineering</div>
+          <div class="week-desc">K-Means, PCA, t-SNE. How to select, transform, and engineer features — the skill that separates average ML engineers from great ones.</div>
+          <div class="week-topics">
+            <span class="topic-chip">K-Means · DBSCAN</span>
+            <span class="topic-chip">PCA · t-SNE</span>
+            <span class="topic-chip">Feature Engineering</span>
+            <span class="topic-chip">Cross-validation</span>
+          </div>
+        </div>
+        <div class="week-badge"><span class="wb wb-test">Test</span></div>
+      </div>
+      <div class="week-row">
+        <div class="week-num">W08</div>
+        <div class="week-content">
+          <div class="week-title">Deep Learning — Neural Networks &amp; Introduction to PyTorch</div>
+          <div class="week-desc">How neural networks work, backpropagation, activation functions. Build your first neural network from scratch, then with PyTorch. Mini-project: Image classifier.</div>
+          <div class="week-topics">
+            <span class="topic-chip">Perceptrons · Backprop</span>
+            <span class="topic-chip">Activation Functions</span>
+            <span class="topic-chip">PyTorch Basics</span>
+            <span class="topic-chip">Mini Project ②</span>
+          </div>
+        </div>
+        <div class="week-badge"><span class="wb wb-proj">Project</span></div>
+      </div>
+    </div>
+
+    <!-- PHASE 3 -->
+    <div class="weeks-list phase-content" id="p3">
+      <div class="week-row">
+        <div class="week-num">W09</div>
+        <div class="week-content">
+          <div class="week-title">NLP &amp; Large Language Models — Core Concepts</div>
+          <div class="week-desc">Text processing, embeddings, transformers, attention mechanism. How GPT and BERT work conceptually. Using OpenAI / HuggingFace APIs.</div>
+          <div class="week-topics">
+            <span class="topic-chip">Tokenisation · Embeddings</span>
+            <span class="topic-chip">Transformers · Attention</span>
+            <span class="topic-chip">HuggingFace</span>
+            <span class="topic-chip">Prompt Engineering</span>
+          </div>
+        </div>
+        <div class="week-badge"><span class="wb wb-test">Test</span></div>
+      </div>
+      <div class="week-row">
+        <div class="week-num">W10</div>
+        <div class="week-content">
+          <div class="week-title">AI Project — End-to-End Build</div>
+          <div class="week-desc">Build a complete, production-ready AI project of your choice. We guide the architecture, you build it. Examples: sentiment analyser, recommendation engine, prediction API.</div>
+          <div class="week-topics">
+            <span class="topic-chip">Project Architecture</span>
+            <span class="topic-chip">FastAPI / Flask</span>
+            <span class="topic-chip">Model Deployment</span>
+            <span class="topic-chip">Project ③ — Portfolio</span>
+          </div>
+        </div>
+        <div class="week-badge"><span class="wb wb-proj">Project</span></div>
+      </div>
+      <div class="week-row">
+        <div class="week-num">W11</div>
+        <div class="week-content">
+          <div class="week-title">Resume, GitHub &amp; Portfolio Polish</div>
+          <div class="week-desc">Your resume rewritten for AI/ML roles. GitHub profile optimised — README, pinned repos, clean commit history. LinkedIn reworded. Everything a recruiter actually reads.</div>
+          <div class="week-topics">
+            <span class="topic-chip">Resume Writing</span>
+            <span class="topic-chip">GitHub Profile</span>
+            <span class="topic-chip">LinkedIn Optimisation</span>
+            <span class="topic-chip">Project Writeups</span>
+          </div>
+        </div>
+        <div class="week-badge"><span class="wb wb-proj">Resume</span></div>
+      </div>
+      <div class="week-row">
+        <div class="week-num">W12</div>
+        <div class="week-content">
+          <div class="week-title">Mock Interviews &amp; Final Assessment</div>
+          <div class="week-desc">3 full mock interviews: technical (coding), conceptual (ML theory), and HR/behavioural. Detailed feedback on each. Final project presentation. You leave ready to walk into any interview.</div>
+          <div class="week-topics">
+            <span class="topic-chip">Technical Interview</span>
+            <span class="topic-chip">ML Concept Q&amp;A</span>
+            <span class="topic-chip">HR / Behavioural</span>
+            <span class="topic-chip">Final Project Demo</span>
+          </div>
+        </div>
+        <div class="week-badge"><span class="wb wb-inter">Interview</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── DELIVERABLES ─────────────────────────────────────────────── -->
+<section class="deliverables" id="deliverables">
+  <div class="container">
+    <p class="section-label">What You'll Have at the End</p>
+    <h2 class="section-title">Concrete deliverables.<br>Not just knowledge.</h2>
+    <p class="section-sub">By Week 12, you will have built, written, and practised everything below.</p>
+
+    <div class="deliv-grid">
+      <div class="deliv-item">
+        <div class="deliv-num">01</div>
+        <div class="deliv-title">12 Jupyter Notebooks</div>
+        <div class="deliv-text">One per week, covering every concept taught. Fully completed, with your own solutions and notes. These go on your GitHub and show interviewers you did the work.</div>
+        <div class="deliv-tags">
+          <span class="tag">Python</span><span class="tag green">ML</span><span class="tag purple">Deep Learning</span>
+        </div>
+      </div>
+      <div class="deliv-item">
+        <div class="deliv-num">02</div>
+        <div class="deliv-title">3 End-to-End AI Projects</div>
+        <div class="deliv-text">Real projects with real data: a data analysis report, an ML model with evaluation, and a deployable AI application. Hosted live, linked from your resume.</div>
+        <div class="deliv-tags">
+          <span class="tag green">Deployed</span><span class="tag amber">Portfolio</span>
+        </div>
+      </div>
+      <div class="deliv-item">
+        <div class="deliv-num">03</div>
+        <div class="deliv-title">Interview-Ready Resume</div>
+        <div class="deliv-text">A resume rewritten specifically for AI/ML roles — clear, ATS-optimised, with the right keywords, quantified achievements, and your projects prominently featured.</div>
+        <div class="deliv-tags">
+          <span class="tag">ATS-Optimised</span><span class="tag green">Role-Specific</span>
+        </div>
+      </div>
+      <div class="deliv-item">
+        <div class="deliv-num">04</div>
+        <div class="deliv-title">GitHub Profile + LinkedIn</div>
+        <div class="deliv-text">Clean GitHub profile with pinned repos, good READMEs, and consistent commit history. LinkedIn headline, about section, and experience rewritten for maximum recruiter visibility.</div>
+        <div class="deliv-tags">
+          <span class="tag purple">GitHub</span><span class="tag">LinkedIn</span>
+        </div>
+      </div>
+      <div class="deliv-item">
+        <div class="deliv-num">05</div>
+        <div class="deliv-title">3 Mock Interview Sessions</div>
+        <div class="deliv-text">One technical (coding + ML algorithms), one conceptual (theory, explain-like-interview), one HR/behavioural. Written feedback after each. You'll know exactly what to improve.</div>
+        <div class="deliv-tags">
+          <span class="tag red">Technical</span><span class="tag amber">Conceptual</span><span class="tag green">HR</span>
+        </div>
+      </div>
+      <div class="deliv-item">
+        <div class="deliv-num">06</div>
+        <div class="deliv-title">Reference PDF Guides + Cheatsheets</div>
+        <div class="deliv-text">For every week, a detailed reference PDF covering all concepts, common mistakes, code examples, and interview Q&A. Yours to keep and review anytime.</div>
+        <div class="deliv-tags">
+          <span class="tag">12 PDFs</span><span class="tag green">Keep Forever</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TECH STACK ───────────────────────────────────────────────── -->
+<section class="stack-section" id="stack">
+  <div class="container">
+    <p class="section-label">Tech Stack You'll Master</p>
+    <h2 class="section-title">Tools that are actually<br>used in the industry.</h2>
+
+    <div class="stack-grid">
+      <div class="stack-card">
+        <div class="stack-icon">🐍</div>
+        <div class="stack-name">Python 3</div>
+        <div class="stack-use">Core language for everything</div>
+        <div class="stack-phase">Weeks 1–3</div>
+      </div>
+      <div class="stack-card">
+        <div class="stack-icon">🔢</div>
+        <div class="stack-name">NumPy</div>
+        <div class="stack-use">Numerical computing, arrays</div>
+        <div class="stack-phase">Week 4</div>
+      </div>
+      <div class="stack-card">
+        <div class="stack-icon">🐼</div>
+        <div class="stack-name">Pandas</div>
+        <div class="stack-use">Data manipulation & analysis</div>
+        <div class="stack-phase">Week 4</div>
+      </div>
+      <div class="stack-card">
+        <div class="stack-icon">📊</div>
+        <div class="stack-name">Matplotlib / Seaborn</div>
+        <div class="stack-use">Data visualisation</div>
+        <div class="stack-phase">Week 4</div>
+      </div>
+      <div class="stack-card">
+        <div class="stack-icon">⚙️</div>
+        <div class="stack-name">Scikit-learn</div>
+        <div class="stack-use">ML algorithms & pipelines</div>
+        <div class="stack-phase">Weeks 5–7</div>
+      </div>
+      <div class="stack-card">
+        <div class="stack-icon">🔥</div>
+        <div class="stack-name">PyTorch</div>
+        <div class="stack-use">Deep learning & neural nets</div>
+        <div class="stack-phase">Week 8</div>
+      </div>
+      <div class="stack-card">
+        <div class="stack-icon">🤗</div>
+        <div class="stack-name">HuggingFace</div>
+        <div class="stack-use">Pre-trained models, NLP</div>
+        <div class="stack-phase">Week 9</div>
+      </div>
+      <div class="stack-card">
+        <div class="stack-icon">⚡</div>
+        <div class="stack-name">FastAPI</div>
+        <div class="stack-use">Deploy ML models as APIs</div>
+        <div class="stack-phase">Week 10</div>
+      </div>
+      <div class="stack-card">
+        <div class="stack-icon">📓</div>
+        <div class="stack-name">Jupyter / Colab</div>
+        <div class="stack-use">Primary development environment</div>
+        <div class="stack-phase">Weeks 1–12</div>
+      </div>
+      <div class="stack-card">
+        <div class="stack-icon">🐙</div>
+        <div class="stack-name">Git / GitHub</div>
+        <div class="stack-use">Version control, portfolio</div>
+        <div class="stack-phase">Weeks 1–12</div>
+      </div>
+      <div class="stack-card">
+        <div class="stack-icon">🗄️</div>
+        <div class="stack-name">SQL Basics</div>
+        <div class="stack-use">Query data from databases</div>
+        <div class="stack-phase">Week 4</div>
+      </div>
+      <div class="stack-card">
+        <div class="stack-icon">☁️</div>
+        <div class="stack-name">Streamlit / Render</div>
+        <div class="stack-use">Deploy & demo AI apps</div>
+        <div class="stack-phase">Week 10</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── OUTCOME TIMELINE ─────────────────────────────────────────── -->
+<section class="outcome">
+  <div class="container">
+    <p class="section-label">Your Transformation</p>
+    <h2 class="section-title">Where you'll be<br>month by month.</h2>
+
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-month">Month 1</div>
+        <div class="tl-line-wrap">
+          <div class="tl-dot"></div>
+          <div class="tl-connector"></div>
+        </div>
+        <div class="tl-content">
+          <div class="tl-title">Confident Python Developer</div>
+          <div class="tl-text">You can write clean, structured Python code. You understand how to work with data, handle errors, build reusable functions, and analyse real datasets with Pandas and NumPy. You've passed 4 weekly tests.</div>
+          <div class="tl-pills">
+            <span class="tl-pill">Write Python from scratch</span>
+            <span class="tl-pill">Analyse real datasets</span>
+            <span class="tl-pill">Clean, documented code</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-month">Month 2</div>
+        <div class="tl-line-wrap">
+          <div class="tl-dot" style="background:#059669;box-shadow:0 0 0 2px #059669;"></div>
+          <div class="tl-connector"></div>
+        </div>
+        <div class="tl-content">
+          <div class="tl-title">ML Engineer Who Understands the Why</div>
+          <div class="tl-text">You can train, evaluate, and tune machine learning models. You understand the maths intuitively (not just copy-paste code) and can explain every algorithm to an interviewer. You've built your first neural network.</div>
+          <div class="tl-pills">
+            <span class="tl-pill">Train &amp; evaluate ML models</span>
+            <span class="tl-pill">Explain algorithms in interviews</span>
+            <span class="tl-pill">Neural network basics</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-month">Month 3</div>
+        <div class="tl-line-wrap">
+          <div class="tl-dot" style="background:#D97706;box-shadow:0 0 0 2px #D97706;"></div>
+          <div class="tl-connector"></div>
+        </div>
+        <div class="tl-content">
+          <div class="tl-title">Portfolio-Ready. Interview-Ready.</div>
+          <div class="tl-text">You have 3 deployed AI projects, a polished resume, an active GitHub, and you've done 3 mock interviews. You know how to answer technical questions, explain your project decisions, and present yourself with confidence.</div>
+          <div class="tl-pills">
+            <span class="tl-pill">3 deployed projects</span>
+            <span class="tl-pill">Interview-ready resume</span>
+            <span class="tl-pill">Mock interview trained</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-month">After</div>
+        <div class="tl-line-wrap">
+          <div class="tl-dot" style="background:#DC2626;box-shadow:0 0 0 2px #DC2626;"></div>
+        </div>
+        <div class="tl-content">
+          <div class="tl-title">Ready to Apply — with Real Evidence</div>
+          <div class="tl-text">You'll apply for Junior AI/ML Engineer, Data Scientist, and ML Research Engineer roles with a portfolio that stands on its own. Not "I completed a course" — but "here are three things I built."</div>
+          <div class="tl-pills">
+            <span class="tl-pill">Junior AI/ML Engineer</span>
+            <span class="tl-pill">Data Scientist</span>
+            <span class="tl-pill">ML Research Engineer</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FAQ ──────────────────────────────────────────────────────── -->
+<section class="faq" id="faq">
+  <div class="container">
+    <p class="section-label">Common Questions</p>
+    <h2 class="section-title">Straight answers.</h2>
+
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Do I need any coding or maths background to start?
+          <span class="chevron">▾</span>
+        </button>
+        <div class="faq-a">
+          None at all. Week 1 starts from literally "what is Python" and "what is a variable." The maths in ML is taught intuitively — you'll understand what's happening without needing to solve equations from first principles. If you can use Excel, you can start this course.
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          How many hours per week does this require?
+          <span class="chevron">▾</span>
+        </button>
+        <div class="faq-a">
+          Plan for approximately 10–14 hours per week: 3 weekday sessions (~45–60 minutes each) plus a 2-hour weekend session plus your own notebook practice time (~3–4 hours). The more you practise outside sessions, the faster you progress.
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          What if I miss a session or fall behind?
+          <span class="chevron">▾</span>
+        </button>
+        <div class="faq-a">
+          Sessions are flexible and reschedulable. The .ipynb notebooks and PDF guides for every week mean you can self-study any content you missed. No one gets left behind — the pace is matched to your progress, not a fixed calendar.
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          I already work in tech / I have some Python knowledge. Is this still useful?
+          <span class="chevron">▾</span>
+        </button>
+        <div class="faq-a">
+          Yes. The early Python weeks are fast-tracked for people with prior experience, and the depth increases significantly from Week 4 onwards. The mock interviews and project guidance in Month 3 are valuable regardless of your background — most developers have never done a structured ML interview before.
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          What does "interview-ready" actually mean here?
+          <span class="chevron">▾</span>
+        </button>
+        <div class="faq-a">
+          It means you can: write Python code under time pressure, explain ML algorithms clearly without being stumped, walk through a project you built and justify your decisions, answer standard HR/behavioural questions about why AI/ML, and present a portfolio that demonstrates real work — not just certificates.
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          What tools do I need to get started?
+          <span class="chevron">▾</span>
+        </button>
+        <div class="faq-a">
+          A laptop with an internet connection. That's it. We use Google Colab (free, no installation needed) for notebooks, and all required libraries are installed as we go. If you prefer to work locally, we help you set up VS Code + Python in Week 1.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ──────────────────────────────────────────────────────── -->
+<section class="cta-footer" id="cta">
+  <div class="container">
+    <p class="section-label" style="text-align:center;">Ready to Start</p>
+    <h2>Three months from now,<br>you could be <em>interview-ready.</em></h2>
+    <p>Your background doesn't matter. Your commitment does. Let's build your AI/ML career — one week at a time.</p>
+    <!-- <div class="cta-group">
+      <a href="mailto:enroll@aiml.course" class="btn-primary">Enroll & Set Your Schedule →</a>
+    </div> -->
+    <p style="font-size:13px;color:var(--muted);margin-top:20px;">
+      Timings fixed based on your availability &nbsp;·&nbsp; All sessions 1-on-1 &nbsp;·&nbsp; Notebooks + PDFs included
+    </p>
+  </div>
+</section>
+
+<!-- ── FOOTER ───────────────────────────────────────────────────── -->
+<footer class="footer-bar">
+  <div class="footer-inner">
+    <span><strong>AI/ML Engineer Course</strong> &nbsp;·&nbsp; 3-Month Interview Prep Program</span>
+    <span>Week 1–12 &nbsp;·&nbsp; Python → ML → AI → Portfolio → Interview</span>
+  </div>
+</footer>
+
+<script>
+// Phase tabs
+function switchPhase(id, tab) {
+  document.querySelectorAll('.phase-content').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.phase-tab').forEach(el => el.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  tab.classList.add('active');
+}
+
+// FAQ toggle
+function toggleFaq(btn) {
+  const answer = btn.nextElementSibling;
+  const isOpen = answer.classList.contains('open');
+  document.querySelectorAll('.faq-a').forEach(a => a.classList.remove('open'));
+  document.querySelectorAll('.faq-q').forEach(b => b.classList.remove('open'));
+  if (!isOpen) {
+    answer.classList.add('open');
+    btn.classList.add('open');
+  }
+}
+
+// Fade in on scroll
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.style.opacity = '1';
+      e.target.style.transform = 'translateY(0)';
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.08 });
+
+document.querySelectorAll('.card, .sched-card, .week-row, .deliv-item, .stack-card, .tl-item').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(16px)';
+  el.style.transition = 'opacity 0.45s ease, transform 0.45s ease';
+  observer.observe(el);
+});
+</script>
+</body>
+</html>
